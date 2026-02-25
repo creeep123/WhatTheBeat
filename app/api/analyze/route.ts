@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { analyzeAudio } from "@/lib/gemini";
+import { analyzeAudio } from "@/lib/openrouter";
 import type { ApiResponse } from "@/lib/types";
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024;
