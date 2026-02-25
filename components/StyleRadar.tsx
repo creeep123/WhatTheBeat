@@ -37,11 +37,11 @@ export default function StyleRadar({ styles }: StyleRadarProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1 }}
-      className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
+      className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20"
     >
-      <h3 className="text-xl font-semibold text-white mb-4">{t("styleRadar")}</h3>
+      <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4">{t("styleRadar")}</h3>
 
-      <div className="w-full h-[250px]">
+      <div className="w-full h-[200px] sm:h-[250px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
@@ -52,12 +52,12 @@ export default function StyleRadar({ styles }: StyleRadarProps) {
             <YAxis
               type="category"
               dataKey="name"
-              width={100}
-              tick={{ fill: "#d1d5db", fontSize: 13 }}
+              width={80}
+              tick={{ fill: "#d1d5db", fontSize: 11 }}
               axisLine={false}
               tickLine={false}
             />
-            <Bar dataKey="percentage" radius={[0, 6, 6, 0]} barSize={28}>
+            <Bar dataKey="percentage" radius={[0, 6, 6, 0]} barSize={24}>
               {data.map((_, index) => (
                 <Cell key={index} fill={COLORS[index % COLORS.length]} />
               ))}
@@ -65,21 +65,21 @@ export default function StyleRadar({ styles }: StyleRadarProps) {
                 dataKey="percentage"
                 position="right"
                 formatter={(v: any) => `${v}%`}
-                style={{ fill: "#e5e7eb", fontSize: 13, fontWeight: 600 }}
+                style={{ fill: "#e5e7eb", fontSize: 11, fontWeight: 600 }}
               />
             </Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>
 
-      <div className="mt-4 space-y-2">
+      <div className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2">
         {data.map((s, i) => (
-          <div key={i} className="flex items-start gap-2">
+          <div key={i} className="flex items-start gap-1.5 sm:gap-2">
             <span
-              className="mt-1.5 w-2.5 h-2.5 rounded-full flex-shrink-0"
+              className="mt-1 sm:mt-1.5 w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full flex-shrink-0"
               style={{ backgroundColor: COLORS[i % COLORS.length] }}
             />
-            <p className="text-sm text-gray-300">
+            <p className="text-xs sm:text-sm text-gray-300">
               <span className="text-white font-medium">{s.name}:</span> {s.description}
             </p>
           </div>

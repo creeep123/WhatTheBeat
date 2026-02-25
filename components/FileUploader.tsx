@@ -65,7 +65,7 @@ export default function FileUploader({ onFileSelected, disabled }: FileUploaderP
         onDrop={handleDrop}
         disabled={disabled}
         className={`
-          w-full flex flex-col items-center gap-3 p-8 rounded-xl border-2 border-dashed
+          w-full flex flex-col items-center gap-2 sm:gap-3 p-6 sm:p-8 rounded-xl border-2 border-dashed
           transition-all duration-200 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed
           ${isDragging
             ? "border-purple-500 bg-purple-500/10"
@@ -73,9 +73,9 @@ export default function FileUploader({ onFileSelected, disabled }: FileUploaderP
           }
         `}
       >
-        <Upload className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform" />
-        <span className="text-white font-medium text-lg">{t("uploadButton")}</span>
-        <span className="text-gray-400 text-sm">{t("dragHint")}</span>
+        <Upload className="w-8 h-8 sm:w-10 sm:h-10 text-purple-400 group-hover:scale-110 transition-transform" />
+        <span className="text-white font-medium text-base sm:text-lg">{t("uploadButton")}</span>
+        <span className="text-gray-400 text-xs sm:text-sm text-center">{t("dragHint")}</span>
       </button>
       <input
         ref={inputRef}

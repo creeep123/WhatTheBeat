@@ -64,7 +64,7 @@ export async function analyzeAudio(
         "X-Title": "WhatTheBeat"
       },
       body: JSON.stringify({
-        model: "google/gemini-2.0-flash-exp:free",  // Use Gemini 2.0 which supports audio
+        model: "google/gemini-2.0-flash-001",  // Use Gemini 2.0 Flash which supports audio at very low cost
         messages: [
           {
             role: "user",

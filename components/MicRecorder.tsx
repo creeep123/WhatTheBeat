@@ -84,14 +84,14 @@ export default function MicRecorder({ onRecordingComplete, disabled }: MicRecord
         <button
           type="button"
           onClick={stopRecording}
-          className="w-full flex flex-col items-center gap-3 p-8 rounded-xl border-2 border-red-500 bg-red-500/10 transition-all duration-200 group cursor-pointer"
+          className="w-full flex flex-col items-center gap-2 sm:gap-3 p-6 sm:p-8 rounded-xl border-2 border-red-500 bg-red-500/10 transition-all duration-200 group cursor-pointer"
         >
           <div className="relative">
-            <Square className="w-10 h-10 text-red-400" />
+            <Square className="w-8 h-8 sm:w-10 sm:h-10 text-red-400" />
             <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse" />
           </div>
-          <span className="text-white font-medium text-lg">{t("stopRecording")}</span>
-          <span className="text-gray-300 text-sm font-mono">
+          <span className="text-white font-medium text-base sm:text-lg">{t("stopRecording")}</span>
+          <span className="text-gray-300 text-xs sm:text-sm font-mono">
             {formatTime(elapsed)} / {formatTime(MAX_DURATION)}
           </span>
         </button>
@@ -100,11 +100,11 @@ export default function MicRecorder({ onRecordingComplete, disabled }: MicRecord
           type="button"
           onClick={startRecording}
           disabled={disabled}
-          className="w-full flex flex-col items-center gap-3 p-8 rounded-xl border-2 border-dashed border-white/20 bg-white/5 hover:border-purple-400/50 hover:bg-purple-500/10 transition-all duration-200 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full flex flex-col items-center gap-2 sm:gap-3 p-6 sm:p-8 rounded-xl border-2 border-dashed border-white/20 bg-white/5 hover:border-purple-400/50 hover:bg-purple-500/10 transition-all duration-200 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <Mic className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform" />
-          <span className="text-white font-medium text-lg">{t("micButton")}</span>
-          <span className="text-gray-400 text-sm">{t("supportedFormats")}</span>
+          <Mic className="w-8 h-8 sm:w-10 sm:h-10 text-purple-400 group-hover:scale-110 transition-transform" />
+          <span className="text-white font-medium text-base sm:text-lg">{t("micButton")}</span>
+          <span className="text-gray-400 text-xs sm:text-sm text-center">{t("supportedFormats")}</span>
         </button>
       )}
       {error && (

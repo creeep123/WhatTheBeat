@@ -33,15 +33,15 @@ export default function ElementCard({ element, index }: ElementCardProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 + index * 0.1 }}
-      className="bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:border-purple-400/30 transition-colors"
+      className="bg-white/5 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-white/10 hover:border-purple-400/30 transition-colors"
     >
-      <div className="flex items-center gap-3 mb-3">
-        <div className="p-2 rounded-lg bg-purple-500/20">
-          <Icon className="w-5 h-5 text-purple-400" />
+      <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+        <div className="p-1.5 sm:p-2 rounded-lg bg-purple-500/20">
+          <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
         </div>
-        <h4 className="text-white font-medium">{element.name}</h4>
+        <h4 className="text-sm sm:text-base text-white font-medium">{element.name}</h4>
       </div>
-      <p className="text-sm text-gray-400 leading-relaxed">{element.description}</p>
+      <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">{element.description}</p>
     </motion.div>
   );
 }

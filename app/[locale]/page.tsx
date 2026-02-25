@@ -50,19 +50,19 @@ export default function Home() {
         {isAnalyzing && <LoadingOverlay />}
       </AnimatePresence>
 
-      <main className="min-h-screen flex flex-col items-center justify-center p-8 pt-20 bg-gradient-to-br from-purple-900 via-black to-purple-900">
+      <main className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 pt-16 sm:pt-20 bg-gradient-to-br from-purple-900 via-black to-purple-900">
         <div className="max-w-4xl w-full">
-          <div className="text-center mb-12">
-            <h1 className="text-6xl font-bold text-white mb-4 tracking-tight">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-3 sm:mb-4 tracking-tight">
               WhatThe<span className="text-purple-400">Beat</span>
             </h1>
-            <p className="text-xl text-gray-300">
+            <p className="text-lg sm:text-xl text-gray-300 px-4">
               {tc("tagline")}
             </p>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-white/20">
-            <h2 className="text-2xl font-semibold text-white mb-6">
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 sm:p-8 shadow-2xl border border-white/20">
+            <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6">
               {t("title")}
             </h2>
 
@@ -81,8 +81,8 @@ export default function Home() {
                 </div>
               )}
 
-              <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-lg p-4 border border-purple-500/30">
-                <p className="text-sm text-gray-300 text-center">
+              <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-lg p-3 sm:p-4 border border-purple-500/30">
+                <p className="text-xs sm:text-sm text-gray-300 text-center">
                   <span className="font-medium text-purple-300">{t("proTip")}</span>{" "}
                   {t("proTipText")}
                 </p>

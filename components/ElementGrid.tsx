@@ -18,8 +18,8 @@ export default function ElementGrid({ elements }: ElementGridProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
     >
-      <h3 className="text-xl font-semibold text-white mb-4">{t("elements")}</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4">{t("elements")}</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {elements.map((element, index) => (
           <ElementCard key={index} element={element} index={index} />
         ))}
