@@ -1,7 +1,14 @@
 import { GoogleGenAI } from "@google/genai";
 import type { AnalysisResult } from "./types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+let ai: GoogleGenAI | null = null;
+
+function getAI() {
+  if (!ai && process.env.GEMINI_API_KEY) {
+    ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+  }
+  return ai;
+}
 
 const ANALYSIS_PROMPT = `You are an expert Hip-Hop music producer and audio analyst with deep knowledge of all sub-genres. Analyze the provided audio clip and return a JSON analysis.
 
@@ -33,7 +40,12 @@ export async function analyzeAudio(
   base64Audio: string,
   mimeType: string
 ): Promise<AnalysisResult> {
-  const response = await ai.models.generateContent({
+  const aiInstance = getAI();
+  if (!aiInstance) {
+    throw new Error("Gemini API key not configured");
+  }
+
+  const response = await aiInstance.models.generateContent({
     model: "gemini-2.5-pro",
     contents: [
       {
