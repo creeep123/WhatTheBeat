@@ -1,0 +1,46 @@
+{
+  "common": {
+    "appName": "WhatTheBeat",
+    "tagline": "你的 Hip-Hop 风格解剖器"
+  },
+  "home": {
+    "title": "解析你的 Beat",
+    "uploadButton": "上传文件",
+    "micButton": "麦克风听歌",
+    "dragHint": "或拖拽音频文件到这里",
+    "supportedFormats": "支持 MP3、WAV、M4A、OGG、FLAC（最大 20MB）",
+    "recording": "录音中...",
+    "stopRecording": "停止并分析",
+    "proTip": "小贴士：",
+    "proTipText": "上传 MP3、WAV 或 M4A 格式的 Beat 效果最佳",
+    "fileTooLarge": "文件过大，最大支持 20MB。",
+    "unsupportedFormat": "不支持的格式，请使用 MP3、WAV、M4A、OGG 或 FLAC。",
+    "micPermissionDenied": "麦克风权限被拒绝，请检查浏览器设置。",
+    "analyzeButton": "分析 Beat"
+  },
+  "loading": {
+    "analyzing": "正在分析你的 Beat...",
+    "messages": [
+      "落针中...",
+      "正在分离 808 贝斯...",
+      "捕捉律动中...",
+      "解读踩镲模式...",
+      "感受节奏...",
+      "拆解 Beat 结构...",
+      "解码节奏 DNA..."
+    ]
+  },
+  "result": {
+    "styleRadar": "风格雷达",
+    "elements": "核心元素",
+    "tags": "黑话标签",
+    "copyTags": "复制标签",
+    "copied": "已复制！",
+    "searchKeywords": "搜索关键词",
+    "copyKeywords": "复制关键词",
+    "summary": "Beat 总结",
+    "bpm": "BPM",
+    "analyzeAnother": "再分析一首",
+    "noData": "未找到分析数据，请先分析一首 Beat。"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "whatthebeat",
+  "version": "1.0.0",
+  "description": "WhatTheBeat - A Hip-Hop Style Analyzer App",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@google/genai": "^1.42.0",
+    "framer-motion": "^12.34.3",
+    "lucide-react": "^0.575.0",
+    "next": "latest",
+    "next-intl": "^4.8.3",
+    "react": "latest",
+    "react-dom": "latest",
+    "recharts": "^3.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10",
+    "eslint": "^9",
+    "eslint-config-next": "latest",
+    "postcss": "^8",
+    "tailwindcss": "^3",
+    "typescript": "^5"
+  },
+  "keywords": [
+    "hip-hop",
+    "music",
+    "analyzer",
+    "nextjs"
+  ],
+  "author": "",
+  "license": "MIT"
+}

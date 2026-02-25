@@ -1,0 +1,46 @@
+{
+  "common": {
+    "appName": "WhatTheBeat",
+    "tagline": "Your Hip-Hop Style Analyzer"
+  },
+  "home": {
+    "title": "Analyze Your Beat",
+    "uploadButton": "Upload File",
+    "micButton": "Use Microphone",
+    "dragHint": "or drag and drop an audio file here",
+    "supportedFormats": "Supports MP3, WAV, M4A, OGG, FLAC (max 20MB)",
+    "recording": "Recording...",
+    "stopRecording": "Stop & Analyze",
+    "proTip": "Pro tip:",
+    "proTipText": "Upload beats in MP3, WAV, or M4A format for best results",
+    "fileTooLarge": "File too large. Maximum size is 20MB.",
+    "unsupportedFormat": "Unsupported format. Please use MP3, WAV, M4A, OGG, or FLAC.",
+    "micPermissionDenied": "Microphone access denied. Please check your browser settings.",
+    "analyzeButton": "Analyze Beat"
+  },
+  "loading": {
+    "analyzing": "Analyzing your beat...",
+    "messages": [
+      "Dropping the needle...",
+      "Separating the 808 bass...",
+      "Catching the vibe...",
+      "Reading the hi-hat patterns...",
+      "Feeling the groove...",
+      "Breaking down the beat...",
+      "Decoding the rhythm DNA..."
+    ]
+  },
+  "result": {
+    "styleRadar": "Style Radar",
+    "elements": "Core Elements",
+    "tags": "Slang Tags",
+    "copyTags": "Copy Tags",
+    "copied": "Copied!",
+    "searchKeywords": "Search Keywords",
+    "copyKeywords": "Copy Keywords",
+    "summary": "Beat Summary",
+    "bpm": "BPM",
+    "analyzeAnother": "Analyze Another Beat",
+    "noData": "No analysis data found. Please analyze a beat first."
+  }
+}
