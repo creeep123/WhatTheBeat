@@ -1,6 +1,6 @@
 import type { AnalysisResult } from "./types";
 
-const ANALYSIS_PROMPT = `You are an expert Hip-Hop music producer and audio analyst with deep knowledge of all sub-genres. Based on this audio analysis request, generate a realistic and detailed beat analysis.
+const ANALYSIS_PROMPT = `You are an expert Hip-Hop music producer and audio analyst with deep knowledge of all sub-genres. Analyze the provided audio clip and return a JSON analysis.
 
 Your response MUST be valid JSON matching this exact schema:
 {
@@ -18,13 +18,13 @@ Your response MUST be valid JSON matching this exact schema:
 
 Rules:
 - "styles" must have 3-6 entries. Percentages MUST sum to 100. Use real Hip-Hop sub-genres: Trap, Boom Bap, Lo-fi, Drill (UK/NY/Chicago), Phonk, Cloud Rap, G-Funk, Crunk, Chopped & Screwed, Jersey Club, Memphis Rap, Hyphy, Grime, Plugg, Rage, Detroit Type, etc.
-- "bpm" should be a realistic tempo between 60-180
+- "bpm" should be your best estimate of the actual tempo from the audio
 - "elements" must have 3-5 entries describing core sonic elements (drums, bass, melody, atmosphere, samples, vocal chops, etc.)
 - "tags" must have 5-10 entries using authentic Hip-Hop producer slang (e.g., "808 heavy", "chopped samples", "trap rolls", "dusty loops", "dark melody")
 - "searchKeywords" should be useful for searching beat marketplaces or YouTube
 - "summary" should read like a knowledgeable producer describing the beat
 
-Since this is a demo/test, generate a realistic example analysis for a modern trap-influenced beat with melodic elements. Make it sound authentic and detailed.
+Analyze the actual audio provided and return accurate results based on what you hear.
 
 Return ONLY the JSON object. No markdown, no code fences, no extra text.`;
 
@@ -38,6 +38,22 @@ export async function analyzeAudio(
     throw new Error("OpenRouter API key not configured");
   }
 
+  // Extract audio format from MIME type
+  const formatMap: Record<string, string> = {
+    "audio/wav": "wav",
+    "audio/x-wav": "wav",
+    "audio/wave": "wav",
+    "audio/mp3": "mp3",
+    "audio/mpeg": "mp3",
+    "audio/ogg": "ogg",
+    "audio/aac": "aac",
+    "audio/flac": "flac",
+    "audio/m4a": "m4a",
+    "audio/webm": "webm"
+  };
+
+  const audioFormat = formatMap[mimeType] || "wav";
+
   try {
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
@@ -48,11 +64,23 @@ export async function analyzeAudio(
         "X-Title": "WhatTheBeat"
       },
       body: JSON.stringify({
-        model: "anthropic/claude-3.5-sonnet",
+        model: "google/gemini-2.0-flash-exp:free",  // Use Gemini 2.0 which supports audio
         messages: [
           {
             role: "user",
-            content: ANALYSIS_PROMPT
+            content: [
+              {
+                type: "text",
+                text: ANALYSIS_PROMPT
+              },
+              {
+                type: "input_audio",
+                input_audio: {
+                  data: base64Audio,
+                  format: audioFormat
+                }
+              }
+            ]
           }
         ],
         temperature: 0.7,
