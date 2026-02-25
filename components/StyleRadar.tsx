@@ -64,7 +64,7 @@ export default function StyleRadar({ styles }: StyleRadarProps) {
               <LabelList
                 dataKey="percentage"
                 position="right"
-                formatter={(v: number) => `${v}%`}
+                formatter={(v: any) => `${v}%`}
                 style={{ fill: "#e5e7eb", fontSize: 13, fontWeight: 600 }}
               />
             </Bar>
