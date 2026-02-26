@@ -64,7 +64,7 @@ export async function analyzeAudio(
         "X-Title": "WhatTheBeat"
       },
       body: JSON.stringify({
-        model: "google/gemini-2.0-flash-001",  // Use Gemini 2.0 Flash which supports audio at very low cost
+        model: "google/gemini-3-flash-preview",  // Use Gemini 3 Flash Preview
         messages: [
           {
             role: "user",
@@ -84,30 +84,75 @@ export async function analyzeAudio(
           }
         ],
         temperature: 0.7,
-        max_tokens: 2048
+        max_tokens: 2048,
+        stream: true  // Enable streaming to get reasoning tokens
       })
     });
 
     if (!response.ok) {
       const error = await response.text();
+      console.error("OpenRouter API error response:", error);
       throw new Error(`OpenRouter API error: ${error}`);
     }
 
-    const data = await response.json();
-    const content = data.choices?.[0]?.message?.content;
+    // Handle streaming response
+    const reader = response.body?.getReader();
+    const decoder = new TextDecoder();
+    let responseContent = "";
+    let buffer = "";
 
-    if (!content) {
-      throw new Error("No response from OpenRouter API");
+    if (!reader) {
+      throw new Error("Response body is not readable");
+    }
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+
+      // Process each complete line
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || ""; // Keep incomplete line in buffer
+
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const data = line.slice(6);
+          if (data === '[DONE]') continue;
+
+          try {
+            const parsed = JSON.parse(data);
+            const content = parsed.choices?.[0]?.delta?.content;
+            if (content) {
+              responseContent += content;
+            }
+
+            // Log usage info if present
+            if (parsed.usage) {
+              console.log("Token usage:", parsed.usage);
+              if (parsed.usage.reasoningTokens) {
+                console.log("Reasoning tokens:", parsed.usage.reasoningTokens);
+              }
+            }
+          } catch (e) {
+            // Skip invalid JSON lines
+          }
+        }
+      }
+    }
+
+    if (!responseContent) {
+      throw new Error("No response content from OpenRouter API");
     }
 
     // Strip markdown fences if present
-    const jsonStr = content.trim().replace(/^```(?:json)?\s*/, "").replace(/\s*```$/, "");
+    const jsonStr = responseContent.trim().replace(/^```(?:json)?\s*/, "").replace(/\s*```$/, "");
 
     let parsed: AnalysisResult;
     try {
       parsed = JSON.parse(jsonStr);
     } catch (e) {
-      console.error("Failed to parse response:", content);
+      console.error("Failed to parse response:", responseContent);
       throw new Error("Failed to parse AI response as JSON");
     }
 
